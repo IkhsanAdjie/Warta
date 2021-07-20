@@ -1,6 +1,11 @@
 package com.ppb.warta;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,5 +31,15 @@ public class MainActivity extends AppCompatActivity {
         WartaViewModel viewModel = new ViewModelProvider(this, factory).get(WartaViewModel.class);
         TextView textView = findViewById(R.id.textView);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main,menu);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        final SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+
+        return super.onCreateOptionsMenu(menu);
     }
 }
